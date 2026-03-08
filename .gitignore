@@ -1,0 +1,8 @@
+
+# IntelliJ project files
+.idea
+*.iml
+
+# Unsealed Secrets
+secret_*.yaml
+*/secret_*.yaml

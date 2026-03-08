@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: link-pg
+spec:
+  selector:
+    app: link-pg
+  ports:
+    - port: 5432
+      targetPort: 5432
+      name: tcp-5432

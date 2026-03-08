@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: link
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: link-back
+  template:
+    metadata:
+      labels:
+        app: link-back
+    spec:
+      containers:
+        - name: link-back
+          image: link-back:latest
+          ports:
+            - containerPort: 8080
+              hostPort: 8080
+              name: http
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+            limits:
+              cpu: 800m
+              memory: 2000Mi

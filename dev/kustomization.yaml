@@ -1,0 +1,23 @@
+kind: Kustomization
+apiVersion: kustomize.config.k8s.io/v1beta1
+namespace: link-dev
+images:
+  - name: link-back
+    newName: registry.digitalocean.com/denic0la-ocean/link-back
+    newTag: 1.0.0
+  - name: link-ui
+    newName: registry.digitalocean.com/denic0la-ocean/link-ui
+    newTag: v1.1.0
+  - name: postgres
+    newName: registry.digitalocean.com/denic0la-ocean/posgress-link
+    newTag: 15.3-alpine
+
+
+resources:
+  - ../base
+  - ingress.yaml
+
+#patches:
+#  - path: patch-stop-all.yaml
+#    target:
+#      kind: Deployment

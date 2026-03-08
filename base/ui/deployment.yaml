@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: link
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: link-ui
+  template:
+    metadata:
+      labels:
+        app: link-ui
+    spec:
+      containers:
+        - name: link-ui
+          image: link-ui:latest
+          ports:
+            - containerPort: 4000
+              hostPort: 4000
+              name: http
+              protocol: TCP
+          envFrom:
+            - configMapRef:
+                name: link-ui-config
+
+          resources:
+            requests:
+              cpu: 100m
+              memory: 50Mi
+            limits:
+              cpu: 400m
+              memory: 500Mi

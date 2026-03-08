@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: link-pg
+spec:
+  selector:
+    matchLabels:
+      app: link-pg
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: link-pg
+    spec:
+      containers:
+        - image: postgres
+          name: link-pg
+          env:
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: database-config
+                  key: username
+            - name: POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name: database-config
+                  key: db-name
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: database-config
+                  key: password
+          ports:
+            - containerPort: 5432
+              name: pg
+          volumeMounts:
+            - name: pg-persistent-storage
+              mountPath: /var/lib/postgresql/data
+      volumes:
+        - name: pg-persistent-storage
+          persistentVolumeClaim:
+            claimName: link-pg-pvc
