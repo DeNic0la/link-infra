@@ -24,6 +24,9 @@ spec:
           envFrom:
             - secretRef:
                 name: database-config
+          env:
+            - name: QUARKUS_CONFIG_LOCATIONS
+              value: /config/application-prod.yaml
           volumeMounts:
             - mountPath: /config/application-prod.yaml
               readOnly: true
@@ -43,4 +46,3 @@ spec:
             items:
               - key: application-prod.yaml
                 path: application-prod.yaml
-                mode: 0644
