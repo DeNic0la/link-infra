@@ -24,7 +24,7 @@ quarkus:
     database: ${DATABASE_NAME}
     username: ${DATABASE_USERNAME}
     jdbc:
-      url: jdbc:postgresql://link-pg/${DATABASE_NAME}
+      url: jdbc:postgresql://link-postgres/${DATABASE_NAME}
       driver: org.postgresql.Driver
 
   flyway:
