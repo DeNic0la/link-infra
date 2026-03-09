@@ -25,7 +25,7 @@ spec:
             - secretRef:
                 name: database-config
           volumeMounts:
-            - mountPath: /deployments/config/application-prod.yaml
+            - mountPath: /config/application-prod.yaml
               readOnly: true
               name: config-volume
               subPath: application-prod.yaml
