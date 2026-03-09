@@ -21,6 +21,7 @@ resources:
 configMapGenerator:
   - files:
       - application-prod.yaml
+    name: application-config
 
 
 #patches:
