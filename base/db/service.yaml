@@ -4,6 +4,7 @@ metadata:
   name: link-postgres
   annotations:
     argocd.argoproj.io/sync-wave: "0"
+    kubernetes.io/service-name: "link-postgres"
 spec:
   selector:
     app: link-pg
