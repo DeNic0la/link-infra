@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  labels:
+    app: link
+  name: router
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-issuer
+    cert-manager.io/common-name: link.denic0la.ch
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - link.denic0la.ch
+      secretName: link-tls
+  rules:
+    - host: link.denic0la.ch
+      http:
+        paths:
+          - path: "/api"
+            pathType: Prefix
+            backend:
+              service:
+                name: link-back
+                port:
+                  number: 8080
+          - path: "/"
+            pathType: Prefix
+            backend:
+              service:
+                name: link-ui
+                port:
+                  number: 8080
