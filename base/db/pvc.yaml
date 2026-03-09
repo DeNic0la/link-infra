@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: link-pg-pvc
+  name: link-pg-pvc-dev
 spec:
   accessModes:
     - ReadWriteOnce

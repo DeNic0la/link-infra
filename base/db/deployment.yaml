@@ -32,14 +32,16 @@ spec:
                 secretKeyRef:
                   name: database-config
                   key: DATABASE_PASSWORD
+            - name: PGDATA
+              value: /var/lib/postgresql/data/data
           ports:
             - containerPort: 5432
               hostPort: 5432
               name: tcp-5432
           volumeMounts:
             - name: pg-persistent-storage
-              mountPath: /var/lib/postgresql/data
+              mountPath: /var/lib/postgresql
       volumes:
         - name: pg-persistent-storage
           persistentVolumeClaim:
-            claimName: link-pg-pvc
+            claimName: link-pg-pvc-dev
