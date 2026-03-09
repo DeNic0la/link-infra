@@ -31,25 +31,25 @@ spec:
               readOnly: true
               name: config-volume
               subPath: application-prod.yaml
-          readinessProbe:
-            httpGet:
-              path: /q/health/ready
-              port: 8080
-            initialDelaySeconds: 10
-            periodSeconds: 5
-          livenessProbe:
-            httpGet:
-              path: /q/health/live
-              port: 8080
-            initialDelaySeconds: 30
-            periodSeconds: 10
-          startupProbe:
-            httpGet:
-              path: /q/health/started
-              port: 8080
-            failureThreshold: 20
-            successThreshold: 2
-            initialDelaySeconds: 10
+#          readinessProbe:
+#            httpGet:
+#              path: /q/health/ready
+#              port: 8080
+#            initialDelaySeconds: 10
+#            periodSeconds: 5
+#          livenessProbe:
+#            httpGet:
+#              path: /q/health/live
+#              port: 8080
+#            initialDelaySeconds: 30
+#            periodSeconds: 10
+#          startupProbe:
+#            httpGet:
+#              path: /q/health/started
+#              port: 8080
+#            failureThreshold: 20
+#            successThreshold: 2
+#            initialDelaySeconds: 10
           resources:
             requests:
               cpu: 100m
