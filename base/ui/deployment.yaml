@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: link
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   replicas: 1
   selector:
@@ -16,14 +18,14 @@ spec:
         - name: link-ui
           image: link-ui:latest
           ports:
-            - containerPort: 4000
-              hostPort: 4000
+            - containerPort: 8080
               name: http
               protocol: TCP
-          envFrom:
-            - configMapRef:
-                name: link-ui-config
-
+          volumeMounts:
+            - mountPath: /etc/nginx/nginx.conf
+              name: nginx-config
+              subPath: nginx.conf
+              readOnly: true
           resources:
             requests:
               cpu: 100m
@@ -31,3 +33,10 @@ spec:
             limits:
               cpu: 400m
               memory: 500Mi
+      volumes:
+        - name: nginx-config
+          configMap:
+            name: nginx-config
+            items:
+              - key: nginx.conf
+                path: nginx.conf

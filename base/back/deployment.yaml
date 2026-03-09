@@ -1,7 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: link
+  name: link-back
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   replicas: 1
   selector:
@@ -17,8 +19,37 @@ spec:
           image: link-back:latest
           ports:
             - containerPort: 8080
-              hostPort: 8080
               name: http
+          envFrom:
+            - secretRef:
+                name: database-config
+          env:
+            - name: QUARKUS_CONFIG_LOCATIONS
+              value: /config/application-prod.yaml
+          volumeMounts:
+            - mountPath: /config/application-prod.yaml
+              readOnly: true
+              name: config-volume
+              subPath: application-prod.yaml
+          readinessProbe:
+            httpGet:
+              path: /q/health/ready
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /q/health/live
+              port: 8080
+            initialDelaySeconds: 30
+            periodSeconds: 10
+          startupProbe:
+            httpGet:
+              path: /q/health/started
+              port: 8080
+            failureThreshold: 20
+            successThreshold: 1
+            initialDelaySeconds: 10
           resources:
             requests:
               cpu: 100m
@@ -26,3 +57,10 @@ spec:
             limits:
               cpu: 800m
               memory: 2000Mi
+      volumes:
+        - name: config-volume
+          configMap:
+            name: application-config
+            items:
+              - key: application-prod.yaml
+                path: application-prod.yaml

@@ -6,15 +6,15 @@ metadata:
   name: router
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-issuer
-    cert-manager.io/common-name: link-dev.denic0la.ch
+    cert-manager.io/common-name: link.denic0la.ch
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - link-dev.denic0la.ch
-      secretName: link-dev-tls
+        - link.denic0la.ch
+      secretName: link-tls
   rules:
-    - host: link-dev.denic0la.ch
+    - host: link.denic0la.ch
       http:
         paths:
           - path: "/api"

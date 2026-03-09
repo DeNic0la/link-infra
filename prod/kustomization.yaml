@@ -1,6 +1,6 @@
 kind: Kustomization
 apiVersion: kustomize.config.k8s.io/v1beta1
-namespace: link-dev
+namespace: link
 images:
   - name: link-back
     newName: registry.digitalocean.com/denic0la-ocean/link-back
@@ -25,9 +25,3 @@ configMapGenerator:
   - files:
       - nginx.conf
     name: nginx-config
-
-
-#patches:
-#  - path: patch-stop-all.yaml
-#    target:
-#      kind: Deployment

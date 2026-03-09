@@ -33,4 +33,4 @@ quarkus:
     port: 8080
 
 app:
-  base-url: https://link-dev.denic0la.ch
+  base-url: https://link.denic0la.ch
