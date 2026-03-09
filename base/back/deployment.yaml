@@ -19,7 +19,6 @@ spec:
           image: link-back:latest
           ports:
             - containerPort: 8080
-              hostPort: 8080
               name: http
           envFrom:
             - secretRef:
@@ -32,6 +31,12 @@ spec:
               readOnly: true
               name: config-volume
               subPath: application-prod.yaml
+          readinessProbe:
+            httpGet:
+              path: /q/health/ready
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 5
           resources:
             requests:
               cpu: 100m
