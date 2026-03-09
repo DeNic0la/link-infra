@@ -10,8 +10,5 @@ spec:
   selector:
     app: link-back
   ports:
-    - protocol: TCP
-      port: 80
-      targetPort: 8080
-      name: tcp-8080
+    - port: 8080
 
