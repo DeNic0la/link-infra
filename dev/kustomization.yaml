@@ -4,7 +4,7 @@ namespace: link-dev
 images:
   - name: link-back
     newName: registry.digitalocean.com/denic0la-ocean/link-back
-    newTag: v0.1.3
+    newTag: v1.0.0
   - name: link-ui
     newName: registry.digitalocean.com/denic0la-ocean/link-ui
     newTag: v1.1.0
