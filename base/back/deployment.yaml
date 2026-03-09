@@ -48,7 +48,7 @@ spec:
               path: /q/health/started
               port: 8080
             failureThreshold: 20
-            successThreshold: 2
+            successThreshold: 1
             initialDelaySeconds: 10
           resources:
             requests:
