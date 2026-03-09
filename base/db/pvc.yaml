@@ -1,10 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: konfi-pvc
+  name: link-pg-pvc
 spec:
   accessModes:
-# only accessable from one pod:
     - ReadWriteOnce
 # accessable from multiple pods:
 #    - ReadWriteMany
