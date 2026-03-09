@@ -21,20 +21,21 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: database-config
-                  key: username
+                  key: DATABASE_USERNAME
             - name: POSTGRES_DB
               valueFrom:
                 secretKeyRef:
                   name: database-config
-                  key: db-name
+                  key: DATABASE_NAME
             - name: POSTGRES_PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: database-config
-                  key: password
+                  key: DATABASE_PASSWORD
           ports:
             - containerPort: 5432
-              name: pg
+              hostPort: 5432
+              name: tcp-5432
           volumeMounts:
             - name: pg-persistent-storage
               mountPath: /var/lib/postgresql/data
