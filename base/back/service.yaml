@@ -1,12 +1,14 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: link
+  name: link-back
   annotations:
     argocd.argoproj.io/sync-wave: "1"
+  labels:
+    service.kubernetes.io/service-proxy-name: "link-back"
 spec:
   selector:
-    app: link
+    app: link-back
   ports:
     - protocol: TCP
       port: 80
