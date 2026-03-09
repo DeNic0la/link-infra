@@ -4,7 +4,7 @@ namespace: link-dev
 images:
   - name: link-back
     newName: registry.digitalocean.com/denic0la-ocean/link-back
-    newTag: v1.0.0
+    newTag: v1.0.3
   - name: link-ui
     newName: registry.digitalocean.com/denic0la-ocean/link-ui
     newTag: v1.1.0
@@ -22,6 +22,9 @@ configMapGenerator:
   - files:
       - application-prod.yaml
     name: application-config
+  - files:
+      - nginx.conf
+    name: nginx-config
 
 
 #patches:
