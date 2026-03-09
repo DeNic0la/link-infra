@@ -4,6 +4,4 @@ labels:
   - pairs:
       part: database
 resources:
-  - deployment.yaml
-  - service.yaml
-  - pvc.yaml
+  - statefullset.yaml
